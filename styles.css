@@ -1,0 +1,47 @@
+:root {
+    --p1: 4px;
+    --p2: 8px;
+}
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    min-height: 100vh;
+    height: 100vh;
+}
+
+body * {
+    border: 1px solid black;
+}
+
+.main-grid {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 5fr;
+}
+
+.side-bar {
+    background-color: deepskyblue;
+    padding: var(--p2);
+    grid-row: span 2;
+}
+
+.header {}
+
+.content {
+    background-color: lightgray;
+}
