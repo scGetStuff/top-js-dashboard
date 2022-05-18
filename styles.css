@@ -1,8 +1,9 @@
 :root {
-    --p1: 4px;
-    --p2: 8px;
+    --space1: 4px;
+    --space2: 8px;
+    --space3: 16px;
+    --space4: 32px;
 }
-
 
 html {
     box-sizing: border-box;
@@ -23,24 +24,138 @@ body {
 }
 
 body * {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+}
+
+img {
+    height: 100%;
+    margin-right: var(--space2);
 }
 
 .main-grid {
-    height: 100%;
+    min-height: 100%;
     font-family: 'Roboto', sans-serif;
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr 5fr;
 }
 
-.side-bar {
-    background-color: deepskyblue;
-    padding: var(--p2);
-    grid-row: span 2;
+/* trying to cut down on repeatative code, define typical layout usages */
+.list {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: start;
 }
 
-.header {}
+.row {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.header,
+.side-bar,
+.content {
+    padding: var(--space3);
+}
+
+.side-bar {
+    background-color: dodgerblue;
+    color: ghostwhite;
+    grid-row: 1 / -1;
+}
+
+.side-bar div {
+    margin-bottom: var(--space4);
+    margin-left: var(--space3);
+}
+
+.side-bar p {
+    font-size: max(1.5vw, 1rem);
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    /* this is not noticable untill you resize, cause i'm playing with responsive text */
+    align-items: center;
+    margin-bottom: var(--space2);
+}
+
+/* TODO: i do not like this */
+/* using id to overide defalults for first element of side-bar */
+#logo {
+    margin-left: 0;
+}
+
+#logo p {
+    font-size: max(2.5vw, 1rem);
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space2);
+}
+
+.search-bar {
+    display: grid;
+    grid-template-columns: max-content auto;
+    align-items: center;
+}
+
+.search-bar input[type="search"] {
+    border-radius: var(--space3);
+    height: 80%;
+    padding-left: 0.75em;
+}
+
+.other-crap-next-to-search {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    align-items: center;
+    gap: var(--space3);
+}
+
+.user-info {
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: 1fr 1fr;
+}
+
+.user-info img {
+    grid-row: 1 / -1;
+}
+
+.user-info p:first-of-type {
+    align-self: end;
+    font-size: small;
+    font-weight: bold;
+    display: grid;
+}
+
+.user-info p:last-of-type {
+    font-size: large;
+    font-weight: bold;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+button {
+    border-radius: var(--space3);
+    background-color: dodgerblue;
+    color: ghostwhite;
+    width: 80%;
+    height: 60%;
+}
+
+button:hover {
+    background-color: blue;
+    transition: 0.7s;
+}
 
 .content {
     background-color: lightgray;
